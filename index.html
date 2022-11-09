@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/popup.css">
+
+    <script>
+
+      fetch('https://mcapi.us/server/status?ip=questmc.pl')
+      .then(response => response.json())
+      .then(data => handleServerStatus(data));
+
+      function handleServerStatus(data) {
+        const playerCounter = document.getElementById("online14");
+        
+        const name = data.server.name
+        
+        const online = name.replace('§f§7Online: §f','')
+
+        //const online = parseInt(replace)
+
+        if (online >= 0) {
+          playerCounter.innerHTML = online;
+        } else {
+          playerCounter.innerHTML = "Offline";
+        }
+      }
+
+    </script>
+
+    <title>questmc.pl || prison</title>
+</head>
+<body>
+    <div class="bg"></div>
+    
+    <div class="header">
+        <div class="logo">
+            <img src="assets/img/logo.png" alt="">
+            <div class="online">
+                <div class="pulsing-icon">
+                    <div class="icon">
+                        <img src="assets/img/pulsing-signal.png" alt="">
+                        <div class="p-dot"></div>
+                    </div>
+                </div>
+
+                <div class="text">
+                    <h2><b id="online14"></b> łącznie</h2>
+                    <h2>graczy online</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav">
+            <a href="#"></a><h2 class="active">Strona główna</h2>
+            <a href="sklep.html"><h2>Sklep</h2></a>
+            <a href="regulamin.html"><h2>Regulamin</h2></a>
+        </div>
+
+        <div class="media">
+            <a href="https://discord.gg/vbavgfSJuc" target="blank"><img src="assets/img/dc-icon.png" alt=""></a>
+            <a href="https://www.youtube.com/channel/UC0DcT2lDo_7JFBEmYYhpRPA" target="blank"><img src="assets/img/yt-icon.png" alt=""></a>
+            <a href="https://www.tiktok.com/@questmc.pl" target="_blank"><img src="assets/img/fb-icon.png" alt=""></a>
+        </div>
+    </div>
+
+
+    <div class="main">
+        <div class="left">
+            <img src="assets/img/render.png" alt="">
+
+        </div>
+
+        <div class="right">
+            <h2>Witaj!</h2>
+            <h3>Questmc.pl - Inowacyjny serwer minecraft, na 
+            <br>Praktycznie wszystkie wersje minecraft, 
+            <br>na serwerze jest tryb prison - mozesz sobie
+            <br>poframic itemki, i sie odstresować, ale też
+            <br>się poklepać :). Zapraszamy do gry
+            <div class="btns">
+                <button onclick="" id="copyBtn">SKOPIUJ IP</button>
+                <h2>
+                  <a style="color: white;" href="https://discord.gg/vbavgfSJuc">
+                    Discord
+                  </a>
+                </h2>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cr">
+        <h2>© questmc.pl 2022</h2>
+    </div>
+    <textarea id="textId" hidden>questmc.pl</textarea>
+
+    <script>
+        class PlayerCounter {
+    constructor({ ip, element, format, refreshRate }) {
+      format = format || '{online}';
+      refreshRate = refreshRate || 60 * 1000;
+  
+      if (!ip) {
+        throw TypeError('ip cannot be null or undefined');
+      }
+  
+      if (!element) {
+        throw TypeError('element cannot be null or undefined');
+      }
+  
+      const ipAddress = ip.split(':');
+      this.ip = ipAddress[0];
+      this.port = ipAddress[1] || '25565';
+  
+      this.format = format;
+      this.element = typeof element === 'string'
+        ? document.querySelector(element)
+        : element;
+  
+      this.runQuery();
+      this.timerId = setInterval(this.runQuery.bind(this), refreshRate);
+    }
+  
+    runQuery() {
+      // I'll use XMLHttpRequest because it has a better browser support
+      // than fetch & Promise.
+      const request = new XMLHttpRequest();
+      request.onreadystatechange = () => {
+        if (request.readyState !== 4 || request.status !== 200) return;
+  
+        const FORMAT_REGEX = /{\b(online|max)\b}/ig;
+        const response = JSON.parse(request.responseText);
+        const displayStatus = this.element.getAttribute('data-playercounter-status');
+  
+        // Display server status.
+        // offline/online
+        if (displayStatus !== null) {
+          this.element.innerText = response.online ? 'online' : 'offline';
+          return;
+        }
+  
+        // Display online players
+        // Make sure server is online
+        if (response.online) {
+          this.element.innerHTML = this.format.replace(FORMAT_REGEX, (_, group) => (
+            // Change 'online' to 'now' to keep backward compatibility
+            response.players[group === 'online' ? 'now' : group])
+          );
+        }
+      };
+      request.open('GET', `https://mcapi.us/server/status?ip=${this.ip}&port=${this.port}`);
+      request.send();
+    }
+  }
+  
+  const onDomLoad = function() {
+    const elements = document.querySelectorAll('[data-playercounter-ip]');
+  
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+  
+      new PlayerCounter({
+        element: element,
+        ip: element.getAttribute('data-playercounter-ip'),
+        format: element.getAttribute('data-playercounter-format'),
+        refreshRate: element.getAttribute('data-playercounter-refreshRate')
+      });
+    }
+  };
+  
+  if (document.readyState === 'complete') {
+    onDomLoad();
+  } else {
+    window.onload = onDomLoad;
+  }
+  
+  window.PlayerCounter = PlayerCounter;
+    </script>
+
+    <script>
+                document.getElementById("copyBtn")
+
+.onclick = function() {
+
+let text = document.getElementById("textId").value;
+
+navigator.clipboard.writeText(text);
+
+
+
+toastr.options.progressBar = true;
+
+toastr.options.newestOnTop = false;
+
+toastr.success('Pomyślnie skopiowano ip!');
+
+
+
+}
+    </script>
+
+<script src="toastr.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</body>
+</html>

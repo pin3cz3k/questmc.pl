@@ -1,0 +1,20 @@
+.header .online .pulsing-icon img{
+    animation: pusling-online 2s infinite;
+}
+
+@keyframes pusling-online {
+    0%{
+        filter: opacity(30%);
+    }
+
+    25%{
+        filter: opacity(100%);
+    }
+    75%{
+        filter: opacity(100%);
+    }
+
+    100%{
+        filter: opacity(30%);
+    }
+}

@@ -1,0 +1,230 @@
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap');
+
+/* genral */
+
+body{
+    background-color: rgb(9, 9, 9);
+    font-family: ibm plex sans;
+    color: white;
+    margin:0;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+
+.discordbutton {
+    text-decoration: 0;
+    color: white;
+}
+
+/* bg's */
+
+.bg{
+    background: url(https://i.postimg.cc/gkd47FCj/Bez-nazwy-1.png);
+    background-size: cover;
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index: -1;
+}
+
+
+.header{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(rgb(35, 11, 50), rgb(10, 6, 22));
+    justify-content: center;
+}
+
+.header .logo {
+    position: absolute;
+    left: 150px;
+    display: flex;
+    align-items: center;
+}
+
+.header .nav {
+    display: flex;
+}
+.header .nav h2{
+    font-weight:400;
+    font-size: 20px;
+    margin-right: 15px;
+    margin-left: 15px;
+    color: gray;
+}
+
+.header .nav .active{
+    color: rgb(157, 0, 255)
+}
+
+.header .logo img {
+    width: 50px;
+    height: 50px;
+}
+
+
+    /* online */
+
+
+    .header .online {
+        margin-left: 25px;
+        display: flex;
+        align-items: center;
+    }
+
+    .header .online .pulsing-icon{
+        background:rgb(35, 35, 35);
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+
+    .header .online .pulsing-icon img{
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top:10px;
+        left: 80.5px;
+    }
+
+    .p-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 100%;
+        position: absolute;
+        top:22.5px;
+        left: 93px;
+        background-color: rgb(34, 255, 0);
+    }
+
+    .header .online .text{
+        margin-left: 10px;
+    }
+
+    .header .online .text h2{
+        margin:0;
+        font-size: 16px;
+        line-height: 15px;
+    }
+
+.header .logo h2 {
+    margin-left: 15px;
+    font-weight: 300;
+}
+
+
+.header .media {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 150px;
+}
+
+.header .media img {
+    width: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* main */
+
+.main {
+    display: flex;
+    min-height: 88vh;
+    align-items: center;
+}
+
+.main .left {
+
+    position: absolute;
+    left: 150px;
+}
+
+.main .left img {
+    width: 550px;
+}
+
+.main .right{
+    display: flex;
+    position: absolute;
+    right: 250px;
+    flex-direction: column;
+}
+
+.main .right h2 {
+    margin:0;
+    font-size: 25px
+
+}
+
+.main .right h3{
+    margin:0;
+    margin-top: 10px;
+    font-weight: 300;
+    color: gray;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.main .btns{
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.main .btns button{
+    border:0;
+    border-radius: 10px;
+    padding: 10px 35px;
+    background-color: rgb(116, 2, 187);
+    color: white;
+    font-family: ibm plex sans;
+    font-weight: 500;
+    font-size: 20px;
+    transition: 200ms;
+
+}
+
+.main .btns button:hover{
+    transition: 200ms;
+    transform: scale(1.04);
+    cursor: pointer;
+}
+
+.main .btns h2{
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    margin-left: 15px;
+}
+
+.main .btns h2:hover{
+    border-bottom: 1px solid white;;
+    cursor: pointer;
+}
+
+.cr{
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+}
+
+.cr h2{
+    font-size: 20px;
+    font-weight: 300;
+}
